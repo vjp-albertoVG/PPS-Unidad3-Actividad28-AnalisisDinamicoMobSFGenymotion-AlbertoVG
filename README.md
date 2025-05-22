@@ -76,7 +76,7 @@ docker run -it --rm  -p 8080:8000 --name MobSFopensecurity/mobile-security-frame
 - `-p 8000:8000` Redireccion de puertos. MobSF muestra su web por el puerto 8000. Nosotros lo redirigimos para que podamos acceder a él por el puerto 8000 de nuestra máquina anfitriona. Si quisiéramos verlo por el 8080 de nuestra máquina anfitriona por que estuviera ocupado el 8000, pondríamos `-p 8080:8000.
 - `opensecurity/mobile-security-framework-mobsf:latest` La imagen docker que vamos a utilizar. Es del usuario `opensecurity` de `Hub.Docker.com` 
 - `--name LabMobSF` es el nombre que queremos que tenga el contenedor docker.
-![](images/image1.png)
+![](images/Imagen1.png)
 
 De esta forma podemos levantar nuestro contenedor `MobSF` para realizar **análisis estáticos de código**. Si lo que deseamos hacer es un **análisis dinámico de código** necesitamos usar otro parámetro:
 - `-e MOBSF_ANALYZER_IDENTIFIER=X.X.X.X:5555` Es el puerto por que se comunicará `ADB` con el emulador de la aplicación Android, donde X.X.X.X es la dirección IP del dispositivo virtual.
@@ -87,7 +87,7 @@ Luego levantaremos todo  el laboratorio por lo que puedes eliminar el contenedor
 docker ps
 ```
 
-![](images/image34.png)
+![](images/Imagen2.png)
 
 Nos muestra información de los contenedores levantados. Vemos como tenemos activo nuestro contenedor `LabMobSF`
 
@@ -112,12 +112,13 @@ Una vez iniciado MobSF (ya sea por Docker o manualmente), accede a través de tu
 
 En la pantalla de autenticación usamos el usuario `mobsf` y la contraseña por defecto: `mobsf`.
 
-![](images/image2.png)
+![](images/Imagen3.png)
 
 
 Verás la interfaz web de MobSF, lista para analizar APKs.
 
-![](images/image3.png)
+![](images/Imagen4.png)
+
 ---
 
 ## 5. ¿Qué es Genymotion?
@@ -138,7 +139,7 @@ Verás la interfaz web de MobSF, lista para analizar APKs.
 
 2. Descarga la versión para tu sistema operativo. En mi caso en `Linux` he descargado el archivo ` .run`.
 
-![](images/image4.png)
+![](images/Imagen5.png)
 
 3. Instálalo. En mi caso lo he copiado e instalado en la carpeta `/opt`:
 
@@ -149,32 +150,27 @@ sudo ./genymotion-3.9.0-linux_x64.run
 ```
 Una vez instalado en tu equipo lánzalo desde el botón de `inicio` de tu SO.
 
-![](images/image5.png)
-
 > Si es necesario, puedes usarlo en Máquina Virtual.
 
 4. Inicia sesión con tu cuenta de Genymotion.
 
-![](images/image6.png)
+![](images/Imagen6.png)
 
 
 > Si no te has registrado, tendrás que hacerlo en este momento para acceder a la aplicación.
 
 Selecciona `Personal use`. Veremos el siguiente aviso:
  
-![](images/image7.png)
+![](images/Imagen7.png)
 
 5. Configurar el hypervisor como VirtualBox.
 
 Por defecto el hypervisor que utiliza Genymotion es Quemu. El problema es que internamente crea una red NAT y por lo tanto nos puede dificultar la conexión con `MobSF`.
 
 Para configurar nos vamos al apartado `Hypervisor` y seleccionamos el hipervisor `VirtualBox` en vez de `Quemu`.
-
-![](images/image25.png)
+![](images/Imagen8.png)
 
 La aplicación se reiniciará y nos aparece la pantalla de la aplicación
-
-![](images/image27.png)
 
 ---
 
@@ -184,20 +180,20 @@ La aplicación se reiniciará y nos aparece la pantalla de la aplicación
 
 2. Crea una nueva máquina virtual Android (preferiblemente Android 5.0 con x86).
  
-![](images/image8.png)
+![](images/Imagen9.png)
 
 En los siguientes pasos podemos dejar todas las opciones tal y como están, salvo cambiarle el nombre al dispositivo, la versión de Android a la que nos interese e instalarle el teclado virutal. Aunque la opción “Enable Root Access” aparece desactivada, en principio sí que tendremos acceso de root.
 - Seleccionamos un teléfono básico `Custom Phone`
 
-![](images/image9.png)
+![](images/Imagen10.png)
 
 - Cambiamos la versión de Android, seleccionando `Android 5`.
 
-![](images/image10.png)
+![](images/Imagen11.png)
 
 - Habilitamos teclado virtual en pantalla.
 
-![](images/image11.png)
+![](images/Imagen12.png)
 
 - !!IMPORTANTE¡¡ En la sección de "Hypervisor Options", configuramos la red del dispositivo en modo `Bridge`. Debemos seleccionar también la interfaz que estamos utilizando (wl0 para inalámbrica, en0 para cableada). 
 
@@ -205,11 +201,9 @@ En los siguientes pasos podemos dejar todas las opciones tal y como están, salv
 
 3. Iniciar el dispositivo. Darle al símbolo de `play`.
 
-![](images/image12.png)
+![](images/Imagen13.png)
 
 Nos aparece el dispositivo.
-
-![](images/image13.png)
 
 ### Comprobar conexión con dispositivo.
 
@@ -218,23 +212,21 @@ Para ver si hay conexión con el dispositivo creado:
 1. Ver ip del dispositivo virtual. 
 - Entramos en `Settings` o `Ajustes`
 
-![](images/image28.png)
-
 - Entramos en seccion `WIFI`
 
-![](images/image29.png)
+![](images/Imagen14.png)
 
 - Le damos a los tres puntos 
 
-![](images/image30.png)
+![](images/Imagen15.png)
 
 - Y finalmente en `Advanced` o `Avanzado`
 
-![](images/image31.png)
+![](images/Imagen16.png)
 
 Ya podremos ver los datos de la conexión: 
 
-![](images/image32.png)
+![](images/Imagen17.png)
 
 2. Probar conexión con ADB.
 
@@ -245,7 +237,7 @@ adb connect X.X.X.X:5555
 ```
 Siendo X.X.X.X la ip de nuestro dispositivo virtual. Si se establece la conexión aparecerá un mesnaje de `conected to X.X.X.X`
 
-![](images/image33.png)
+![](images/Imagen18.png)
 
 ---
 
@@ -270,7 +262,7 @@ Los módulos necesarios para arrancar la aplicación ya no vienen en los Linux m
 
 Para comprobar la versión de python que tenemos probamos con:
 
-![](images/image19.png)
+![](images/Imagen19.png)
 
 Como vemos en la imagen sólo nos detecta Python3. Al intentar ejecutar la aplicación nos da un error propio de que la función `print()` ha cambiado de `python2` a `python3`.
 
@@ -282,7 +274,7 @@ Como vemos en la imagen sólo nos detecta Python3. Al intentar ejecutar la aplic
 pip install -r requirements.txt
 ```
 
-![](images/image15.png)
+![](images/Imagen20.png)
 
 Aquí vemos cómo se ha instalado correctamente.
 
